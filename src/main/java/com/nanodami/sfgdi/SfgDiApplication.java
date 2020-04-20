@@ -21,19 +21,19 @@ public class SfgDiApplication {
 
 		System.out.println(greeting);
 
-		System.out.println("Property based DI");
+		System.out.println("--- Property based DI ---");
 
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
 
 		System.out.println(propertyInjectedController.getGreeting());
 
-		System.out.println("Setter based DI");
+		System.out.println("--- Setter based DI ---");
 
 		SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
 
 		System.out.println(setterInjectedController.getGreeting());
 
-		System.out.println("Constructor based DI");
+		System.out.println("--- Constructor based DI ---");
 
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 
