@@ -1,10 +1,9 @@
 package com.nanodami.sfgdi.controllers;
 
-import com.nanodami.sfgdi.services.GreetingServiceImpl;
+import com.nanodami.sfgdi.services.ConstructorGreetingService;
+import com.nanodami.sfgdi.services.SetterGreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SetterInjectedControllerTest {
 
@@ -13,7 +12,7 @@ class SetterInjectedControllerTest {
     @BeforeEach
     void setUp() {
         controller = new SetterInjectedController();
-        controller.setGreetingService(new GreetingServiceImpl());
+        controller.setGreetingService(new SetterGreetingService());
 
     }
 
