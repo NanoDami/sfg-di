@@ -1,14 +1,19 @@
 package com.nanodami.sfgdi.config;
 
 import com.nanodami.sfgdi.examplebeans.FakeDataSource;
+import com.nanodami.sfgdi.examplebeans.FakeJMSBroker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@PropertySource("classpath:datasource.properties")
+@PropertySources({
+        @PropertySource("classpath:datasource.properties"),
+        @PropertySource("classpath:jms.properties")
+})
 public class PropertyConfig {
 
     @Value("${guru.username}")
@@ -19,6 +24,24 @@ public class PropertyConfig {
 
     @Value("${guru.dburl}")
     String url;
+
+    @Value("${guru.jms.username}")
+    String jmsUser;
+
+    @Value("${guru.jms.password}")
+    String jmsPassword;
+
+    @Value("${guru.jms.url}")
+    String jmsUrl;
+
+    @Bean
+    FakeJMSBroker fakeJMSBroker() {
+        FakeJMSBroker fakeJMSBroker = new FakeJMSBroker();
+        fakeJMSBroker.setUsername(jmsUser);
+        fakeJMSBroker.setPassword(jmsPassword);
+        fakeJMSBroker.setUrl(jmsUrl);
+        return fakeJMSBroker;
+    }
 
     @Bean
     public FakeDataSource fakeDataSource() {
